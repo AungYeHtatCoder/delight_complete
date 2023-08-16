@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\EventCalendarController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\EventNotificationController;
 
 Route::get('/', function () {
     return view('frontend.index');
@@ -40,6 +40,12 @@ Route::name('admin.')->group(function () {
         
         Route::get('/full-calendar/event{id}', [EventCalendarController::class, 'eventDetail']);
 
+
+        // Define a route for adding an event
+        Route::post('/add-event', [EventNotificationController::class, 'addEvent']);
+
+        // Define a route for sending event notifications
+        Route::get('/send-event-notification/{userId}/{eventData}', [EventNotificationController::class, 'sendEventNotification']);
 
     });
 

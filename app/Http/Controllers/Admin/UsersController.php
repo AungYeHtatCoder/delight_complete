@@ -86,4 +86,20 @@ class UsersController extends Controller
         $user->delete();
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully');
     }
+
+
+    public function addEvent(Request $request)
+{
+    // ... create event logic ...
+
+    $user = auth()->user(); // Retrieve the authenticated user
+    $user->notify(new EventAddedNotification());
+}
+    public function sendEventNotification($userId, $eventData)
+    {
+        $user = User::find($userId); // Get the user who should receive the notification
+        $user->notify(new EventAddedNotification($eventData)); // Trigger the notification
+    }
+
+
 }
