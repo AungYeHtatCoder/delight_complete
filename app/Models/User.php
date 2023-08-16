@@ -72,5 +72,7 @@ class User extends Authenticatable
     {
         return $this->roles->flatMap->permissions->pluck('title')->contains($permission);
     }
+
+    
     
 }
