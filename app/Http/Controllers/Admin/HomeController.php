@@ -11,7 +11,7 @@ class HomeController extends Controller
     {
         $notifications = auth()->user()->unreadNotifications;
 
-        return view('home', compact('notifications'));
+        return view('admin.user_noti.index', compact('notifications'));
     }
 
     public function markNotification(Request $request)

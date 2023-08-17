@@ -88,18 +88,10 @@ class UsersController extends Controller
     }
 
 
-    public function addEvent(Request $request)
-{
-    // ... create event logic ...
-
-    $user = auth()->user(); // Retrieve the authenticated user
-    $user->notify(new EventAddedNotification());
-}
-    public function sendEventNotification($userId, $eventData)
+    public function massDestroy(Request $request)
     {
-        $user = User::find($userId); // Get the user who should receive the notification
-        $user->notify(new EventAddedNotification($eventData)); // Trigger the notification
+        User::whereIn('id', request('ids'))->delete();
+        return response(null, 204);
     }
-
 
 }

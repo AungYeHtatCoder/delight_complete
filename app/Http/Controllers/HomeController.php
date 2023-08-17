@@ -27,8 +27,10 @@ class HomeController extends Controller
     public function index(Request $request)
     {
          if (auth()->user()->hasRole('Admin')) {
-        return view('admin.profile.index');
-        return view('home');
+        $notifications = auth()->user()->unreadNotifications;
+
+        return view('admin.profile.index', compact('notifications'));
+        //return view('home');
 
     } else {
         if($request->ajax())
