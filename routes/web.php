@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\EventCalendarController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\EventNotificationController;
+use App\Http\Controllers\Admin\SampleController;
 
 Route::get('/', function () {
     return view('frontend.index');
@@ -28,6 +29,9 @@ Route::name('admin.')->group(function () {
         // profile resource rotues
         Route::resource('/profiles', App\Http\Controllers\Admin\ProfileController::class);
         // plan resources route
+        Route::resource('/plans', App\Http\Controllers\Admin\PlansController::class);
+        // service resources route
+        Route::resource('/services', App\Http\Controllers\Admin\ServiceController::class);
 
 
         // content-calendar routes
@@ -37,8 +41,16 @@ Route::name('admin.')->group(function () {
         Route::get('/client-calendar/{id}', [EventCalendarController::class,'clientCalendar']);
         Route::post('/client-calendar/action/{id}', [EventCalendarController::class,'clientCalendarAction']);
         Route::get('/profile', [EventCalendarController::class, 'profile']);
-        
+
         Route::get('/full-calendar/event{id}', [EventCalendarController::class, 'eventDetail']);
+
+        //service sample crud
+        Route::get('/samples', [SampleController::class, 'index']);
+        Route::get('/samples/create', [SampleController::class, 'create']);
+        Route::post('/samples/create', [SampleController::class, 'store']);
+        Route::get('/samples/edit/{id}', [SampleController::class, 'edit']);
+        Route::post('/samples/edit/{id}', [SampleController::class, 'update']);
+        Route::get('/samples/delete/{id}', [SampleController::class, 'delete']);
 
 
         // Define a route for adding an event

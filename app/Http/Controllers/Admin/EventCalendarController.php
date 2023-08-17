@@ -131,11 +131,13 @@ class EventCalendarController extends Controller
     	}
     	return view('admin.profile');
     }
-    
+
     public function eventDetail($id)
     {
         $event = Event::find($id);
         if(!$event){
+            return redirect('/home');
+        }elseif(Auth::user()->id !== $event->user_id){
             return redirect('/home');
         }
         return view('customer.profile.eventDetail', compact('event'));

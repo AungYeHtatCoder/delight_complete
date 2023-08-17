@@ -1,7 +1,7 @@
 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 @foreach (Auth::user()->roles as $role)
     @if ($role->title === "Admin")
-    <li class="active"><a href="{{ url('/home') }}"><i class="la la-home"></i><span class="menu-title"
+    <li class=""><a href="{{ url('/home') }}"><i class="la la-home"></i><span class="menu-title"
         data-i18n="eCommerce Dashboard">Dashboard</span></a>
      </li>
      <li class=" navigation-header"><span data-i18n="Ecommerce">Delight</span><i class="la la-ellipsis-h"
@@ -36,30 +36,13 @@
 
 
     <li class=" nav-item"><a href="#"><i class="la la-file-text"></i><span class="menu-title"
-        data-i18n="Form Layouts">ArtManagenment</span></a>
+        data-i18n="Form Layouts">User Interface</span></a>
       <ul class="menu-content">
-       <li><a class="menu-item" href=""><i></i><span data-i18n="Basic Forms">Plans</span></a>
+       <li><a class="menu-item" href="{{ route('admin.plans.index') }}"><i></i><span data-i18n="Basic Forms">Plans</span></a>
        </li>
-       <li><a class="menu-item" href=""><i></i><span data-i18n="Basic Forms">Services</span></a>
+       <li><a class="menu-item" href="{{ route('admin.services.index') }}"><i></i><span data-i18n="Basic Forms">Services</span></a>
        </li>
-       <li><a class="menu-item" href="form-layout-horizontal.html"><i></i><span data-i18n="Horizontal Forms">Motion
-          Video</span></a>
-       </li>
-       <li><a class="menu-item" href=""><i></i><span data-i18n="Hidden Labels">Service Samples</span></a>
-       </li>
-       <li><a class="menu-item" href="form-layout-form-actions.html"><i></i><span data-i18n="Form Actions">Form
-          Actions</span></a>
-       </li>
-       <li><a class="menu-item" href="form-layout-row-separator.html"><i></i><span data-i18n="Row Separator">Row
-          Separator</span></a>
-       </li>
-       <li><a class="menu-item" href="form-layout-bordered.html"><i></i><span data-i18n="Bordered">Bordered</span></a>
-       </li>
-       <li><a class="menu-item" href="form-layout-striped-rows.html"><i></i><span data-i18n="Striped Rows">Striped
-          Rows</span></a>
-       </li>
-       <li><a class="menu-item" href="form-layout-striped-labels.html"><i></i><span data-i18n="Striped Labels">Striped
-          Labels</span></a>
+       <li><a class="menu-item" href="{{ url('/samples') }}"><i></i><span data-i18n="Hidden Labels">Service Samples</span></a>
        </li>
       </ul>
      </li>
