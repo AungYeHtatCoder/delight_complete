@@ -31,6 +31,10 @@
         <li><a class="menu-item" href="{{ route('admin.users.index') }}"><i></i><span data-i18n="Basic Buttons">Users
           </span></a>
         </li>
+        <li><a class="menu-item" href="{{ route('admin.our_clients.index') }}"><i></i><span data-i18n="Basic Buttons">Our
+            Clients
+            </span></a>
+        </li>
        </ul>
     </li>
 
