@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('plan_service', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('plan_id');
+            $table->unsignedBigInteger('service_id');
             $table->timestamps();
+
+            // Define foreign keys
+            $table->foreign('plan_id')->references('id')->on('plans')->onDelete('cascade');
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
         });
     }
 
