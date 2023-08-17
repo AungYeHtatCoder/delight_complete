@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\EventCalendarController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\EventNotificationController;
+use App\Http\Controllers\Admin\HomeController;
 
 Route::get('/', function () {
     return view('frontend.index');
@@ -19,6 +20,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::name('admin.')->group(function () {
     // rotues middleware admin group
     Route::middleware(['auth'])->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
+    Route::post('/mark-as-read', [App\Http\Controllers\Admin\HomeController::class, 'markNotification'])->name('markNotification');
         // permission resource routes
         Route::resource('/permissions',App\Http\Controllers\Admin\PermissionController::class);
         // role resource routes

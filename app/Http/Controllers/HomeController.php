@@ -28,6 +28,8 @@ class HomeController extends Controller
     {
          if (auth()->user()->hasRole('Admin')) {
         return view('admin.profile.index');
+        return view('home');
+
     } else {
         if($request->ajax())
     	{
