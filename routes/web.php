@@ -32,6 +32,9 @@ Route::name('admin.')->group(function () {
         Route::resource('/profiles', App\Http\Controllers\Admin\ProfileController::class);
         // plan resources route
 
+        // our_client resource rotues
+        Route::resource('/our_clients', App\Http\Controllers\Admin\OurClientsController::class);
+
 
         // content-calendar routes
         Route::get('/full-calendar', [EventCalendarController::class, 'index']);
