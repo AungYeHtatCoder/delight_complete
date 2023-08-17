@@ -105,7 +105,7 @@
           <br>
           @endforeach
          </td>
-         <td>{{ $role->created_at->format('F j, Y') }}</td>
+         <td>{{ $user->created_at->format('F j, Y') }}</td>
          <td>
           <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
           <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-primary btn-sm">Show</a>
@@ -114,11 +114,11 @@
            @method('DELETE')
            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
           </form>
-
          </td>
         </tr>
         @endforeach
        </tbody>
+
       </table>
      </div>
     </div>
