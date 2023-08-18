@@ -1,7 +1,7 @@
 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
  @foreach (Auth::user()->roles as $role)
  @if ($role->title === "Admin")
- <li class="active"><a href="{{ url('/home') }}"><i class="la la-home"></i><span class="menu-title"
+ <li class=""><a href="{{ url('/home') }}"><i class="la la-home"></i><span class="menu-title"
     data-i18n="eCommerce Dashboard">Dashboard</span></a>
  </li>
  <li class=" navigation-header"><span data-i18n="Ecommerce">Delight</span><i class="la la-ellipsis-h"
@@ -49,26 +49,31 @@
    <li><a class="menu-item" href="{{ route('admin.services.index') }}"><i></i><span
       data-i18n="Basic Forms">Services</span></a>
    </li>
-   <li><a class="menu-item" href="form-layout-horizontal.html"><i></i><span data-i18n="Horizontal Forms">Motion
-      Video</span></a>
-   </li>
    <li><a class="menu-item" href="{{ url('/samples') }}"><i></i><span data-i18n="Hidden Labels">Service
       Samples</span></a>
    </li>
-   <li><a class="menu-item" href="form-layout-form-actions.html"><i></i><span data-i18n="Form Actions">Form
-      Actions</span></a>
+  </ul>
+ </li>
+
+ <li class=" nav-item">
+  <a href="#">
+   <i class="la la-server"></i>
+   <span class="menu-title" data-i18n="Components">Samples Details</span>
+  </a>
+  <ul class="menu-content">
+   <li><a class="menu-item" href="{{ url('/samples/motion_video/') }}"><i></i><span
+      data-i18n="Alerts">Motion Video</span></a>
    </li>
-   <li><a class="menu-item" href="form-layout-row-separator.html"><i></i><span data-i18n="Row Separator">Row
-      Separator</span></a>
+   <li><a class="menu-item" href="{{ url('/samples/art_photo/') }}"><i></i><span
+      data-i18n="Alerts">Art Photo/Comic</span></a>
    </li>
-   <li><a class="menu-item" href="form-layout-bordered.html"><i></i><span data-i18n="Bordered">Bordered</span></a>
+   <li><a class="menu-item" href="{{ url('/samples/graphic_photo/') }}"><i></i><span
+      data-i18n="Alerts">Graphic Photo</span></a>
    </li>
-   <li><a class="menu-item" href="form-layout-striped-rows.html"><i></i><span data-i18n="Striped Rows">Striped
-      Rows</span></a>
+   <li><a class="menu-item" href="{{ url('/samples/boosting/') }}"><i></i><span
+      data-i18n="Alerts">Boosting</span></a>
    </li>
-   <li><a class="menu-item" href="form-layout-striped-labels.html"><i></i><span data-i18n="Striped Labels">Striped
-      Labels</span></a>
-   </li>
+
   </ul>
  </li>
  @endif

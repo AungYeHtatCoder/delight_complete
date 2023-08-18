@@ -187,5 +187,37 @@ class SampleController extends Controller
 
     }
 
+    public function detail($name){
+        if($name === "motion_video"){
+            $samples = Sample::whereHas('service', function($query) {
+                $query->where('service_name', 'Motion Video');
+            })->get();
+            $service = Service::where('service_name', 'Motion Video')->first();
+            return view('admin.samples.detail', compact('samples', 'service'));
+        }
+        if($name === "art_photo"){
+            $samples = Sample::whereHas('service', function($query) {
+                $query->where('service_name', 'Art Photo')->orWhere('service_name', 'Art Comic');
+            })->get();
+            $service = Service::where('service_name', 'Art Photo')->first();
+            return view('admin.samples.detail', compact('samples', 'service'));
+        }
+        if($name === "graphic_photo"){
+            $samples = Sample::whereHas('service', function($query) {
+                $query->where('service_name', 'Graphic Photo');
+            })->get();
+            $service = Service::where('service_name', 'Graphic Photo')->first();
+            return view('admin.samples.detail', compact('samples', 'service'));
+        }
+        if($name === "boosting"){
+            $samples = Sample::whereHas('service', function($query) {
+                $query->where('service_name', 'Boosting');
+            })->get();
+            $service = Service::where('service_name', 'Boosting')->first();
+            return view('admin.samples.detail', compact('samples', 'service'));
+        }
+
+    }
+
 
 }

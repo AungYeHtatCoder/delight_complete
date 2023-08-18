@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Service;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -10,8 +11,9 @@ class HomeController extends Controller
     public function index()
     {
         $notifications = auth()->user()->unreadNotifications;
+        $services = Service::all();
 
-        return view('admin.user_noti.index', compact('notifications'));
+        return view('admin.user_noti.index', compact('notifications', 'services'));
     }
 
     public function markNotification(Request $request)

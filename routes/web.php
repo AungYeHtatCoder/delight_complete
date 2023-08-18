@@ -59,6 +59,8 @@ Route::name('admin.')->group(function () {
         Route::post('/samples/edit/{id}', [SampleController::class, 'update']);
         Route::get('/samples/delete/{id}', [SampleController::class, 'delete']);
 
+        Route::get('/samples/{name}/', [SampleController::class, 'detail']);
+
 
         // Define a route for adding an event
         Route::post('/add-event', [EventNotificationController::class, 'addEvent']);
