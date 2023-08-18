@@ -41,6 +41,21 @@ class UsersNotificationsServiceProvider extends ServiceProvider
             'admin.users.edit',
             'admin.users.show',
             'admin.profile.index',
+            'admin.our_client.index',
+            'admin.our_client.create',
+            'admin.our_client.edit',
+            'admin.our_client.show',
+            'admin.plan.index',
+            'admin.plan.create',
+            'admin.plan.edit',
+            'admin.plan.show',
+            'admin.services.index',
+            'admin.services.create',
+            'admin.services.edit',
+            'admin.services.show',
+            'admin.samples.index',
+            'admin.samples.create',
+            'admin.samples.edit',
         ], function ($view) {
             if (auth()->check() && auth()->user()->is_admin) {
                 $notifications = DB::table('notifications')
