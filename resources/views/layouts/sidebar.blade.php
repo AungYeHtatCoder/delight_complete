@@ -42,7 +42,7 @@
     <li class=" nav-item"><a href="#"><i class="la la-file-text"></i><span class="menu-title"
         data-i18n="Form Layouts">ArtManagenment</span></a>
       <ul class="menu-content">
-       <li><a class="menu-item" href=""><i></i><span data-i18n="Basic Forms">Plans</span></a>
+       <li><a class="menu-item" href="{{ url('/plans') }}"><i></i><span data-i18n="Basic Forms">Plans</span></a>
        </li>
        <li><a class="menu-item" href=""><i></i><span data-i18n="Basic Forms">Services</span></a>
        </li>
