@@ -25,9 +25,9 @@
       <ol class="breadcrumb">
        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a>
        </li>
-       <li class="breadcrumb-item"><a href="{{ route('admin.our_clients.create') }}">Create Client</a>
+       <li class="breadcrumb-item"><a href="{{ route('admin.our_clients.create') }}">Create Our Client</a>
        </li>
-       <li class="breadcrumb-item active">Client Responsive Datatable
+       <li class="breadcrumb-item active">Our Client Responsive Datatable
        </li>
       </ol>
      </div>

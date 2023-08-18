@@ -70,7 +70,7 @@ class PlansController extends Controller
 {
     $plan = Plan::findOrFail($id);
     $services = Service::all();
-    return view('admin.plan.show', compact('plan'));
+    return view('admin.plan.show', compact('plan', 'services'));
 }
 
 

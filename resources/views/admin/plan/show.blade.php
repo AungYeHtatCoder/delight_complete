@@ -92,7 +92,15 @@
        <tr>
         <th>Plan Code</th>
         <td>{!! $plan->plan_code !!}</td>
-
+       </tr>
+       <tr>
+        <th>Services</th>
+        <td>
+         @foreach($plan->services as $key => $services)
+         <div class="label label-info">{{ $services->service_name }}
+          ({{ $services->pivot->qty }})</div>
+         @endforeach
+        </td>
        </tr>
        <tr>
         <th>Create Date </th>

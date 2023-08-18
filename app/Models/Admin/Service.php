@@ -11,6 +11,8 @@ class Service extends Model
 
     protected $fillable = [
         'service_name',
+        'created_at',
+        'updated_at',
     ];
 
     public function plans()

@@ -11,6 +11,8 @@ class OurClient extends Model
 
     protected $fillable = [
         'client_name',
-        'logo'
+        'logo',
+        'created_at',
+        'updated_at',
     ];
 }

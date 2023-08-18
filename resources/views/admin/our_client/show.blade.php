@@ -5,15 +5,15 @@
  <div class="content-header-light col-12">
   <div class="row">
    <div class="content-header-left col-md-9 col-12 mb-2">
-    <h3 class="content-header-title">Permission Detail Dashboard</h3>
+    <h3 class="content-header-title">Our Client Detail Dashboard</h3>
     <div class="row breadcrumbs-top">
      <div class="breadcrumb-wrapper col-12">
       <ol class="breadcrumb">
        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a>
        </li>
-       <li class="breadcrumb-item"><a href="{{ route('admin.permissions.index') }}">Back To Permission</a>
+       <li class="breadcrumb-item"><a href="{{ route('admin.our_clients.index') }}">Back To Our Client</a>
        </li>
-       <li class="breadcrumb-item active">Permission Detail Dashboard
+       <li class="breadcrumb-item active">Our Client Detail Dashboard
        </li>
       </ol>
      </div>
