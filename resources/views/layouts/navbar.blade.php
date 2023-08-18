@@ -113,18 +113,18 @@
        data-toggle="dropdown"><i class="ficon ft-bell"></i><span
         class="badge badge-pill badge-danger badge-up badge-glow">
 
-        @if(Auth::check())
+        {{-- @if(Auth::check())
         {{ Auth::user()->unreadNotifications->count() }}
         @else
         0
-        @endif
+        @endif --}}
        </span>
       </a>
       <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
        <li class="dropdown-menu-header">
         <h6 class="dropdown-header m-0"><span class="grey darken-2">Notifications</span></h6><span
          class="notification-tag badge badge-danger float-right m-0">
-         @if(auth()->user()->is_admin)
+         {{-- @if(auth()->user()->is_admin)
          @if($notifications)
          {{ $notifications->count() }}
          @else
@@ -132,7 +132,7 @@
          @endif
          @else
          0
-         @endif
+         @endif --}}
         </span>
        </li>
        <li class="scrollable-container media-list w-100"><a href="javascript:void(0)">
@@ -140,7 +140,7 @@
           <div class="media-left align-self-center"><i class="ft-plus-square icon-bg-circle bg-cyan mr-0"></i></div>
           <div class="media-body">
            <h6 class="media-heading">You have new order!</h6>
-           @if(auth()->user()->is_admin)
+           {{-- @if(auth()->user()->is_admin)
            @if($notifications)
            @forelse($notifications as $notification)
            @if(is_array($notification->data))
@@ -157,13 +157,13 @@
            <a href="#" class="float-right mark-as-read" data-id="{{ $notification->id }}">
             Mark as read
            </a>
-           @endif
-           @empty
+           @endif --}}
+           {{-- @empty
            There are no new notifications
            @endforelse
            @endif
            @else
-           @endif
+           @endif --}}
 
           </div>
         </a><a href="javascript:void(0)">

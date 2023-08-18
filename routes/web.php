@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\EventCalendarController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\EventNotificationController;
+use App\Http\Controllers\Admin\SampleController;
 
 Route::get('/', function () {
     return view('frontend.index');

@@ -21,8 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('plan_service', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('add_qty_to_plan_service');
     }
 };
