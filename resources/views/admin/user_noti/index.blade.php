@@ -1,4 +1,5 @@
 @extends('layouts.admin_app')
+
 @section('content')
 <div class="content-header row">
  <div class="content-header-light col-12">
@@ -8,11 +9,11 @@
     <div class="row breadcrumbs-top">
      <div class="breadcrumb-wrapper col-12">
       <ol class="breadcrumb">
-       <li class="breadcrumb-item"><a href="index.html">Home</a>
+       <li class="breadcrumb-item"><a href="{{ route('home') }}>Home</a>
        </li>
        {{-- <li class="breadcrumb-item"><a href="#">DataTables</a>
        </li> --}}
-       <li class="breadcrumb-item active">Dashboard
+       <li class=" breadcrumb-item active">User Registration Notification Dashboard
        </li>
       </ol>
      </div>
@@ -33,4 +34,82 @@
  </div>
 </div>
 <div class="content-overlay"></div>
+<ul>
+ <!-- resources/views/partials/_notifications.blade.php -->
+ <li class="dropdown-menu-header">
+  <h6 class="dropdown-header m-0"><span class="grey darken-2">Notifications</span></h6>
+  <span class="notification-tag badge badge-danger float-right m-0">
+   {{ $notifications->count() }}
+  </span>
+ </li>
+</ul>
+
+<!-- display user noti -->
+<div class="card-body">
+ @if(session('status'))
+ <div class="alert alert-success" role="alert">
+  {{ session('status') }}
+ </div>
+ @endif
+
+ @if(auth()->user()->is_admin)
+ @forelse($notifications as $notification)
+ <div class="alert alert-success" role="alert">
+  [{{ $notification->created_at }}] User {{ $notification->data['name'] }} ({{ $notification->data['email'] }}) has just
+  registered.
+  <a href="#" class="float-right mark-as-read" data-id="{{ $notification->id }}">
+   Mark as read
+  </a>
+ </div>
+
+ @if($loop->last)
+ <a href="#" id="mark-all">
+  Mark all as read
+ </a>
+ @endif
+ @empty
+ There are no new notifications
+ @endforelse
+ @else
+ You are logged in!
+ @endif
+</div>
+@endsection
+
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+@parent
+@if(auth()->user()->is_admin)
+<script>
+$(function() {
+ function sendMarkRequest(id = null) {
+  let csrfToken = $('meta[name="csrf-token"]').attr('content');
+  return $.ajax("{{ route('admin.markNotification') }}", {
+   method: 'POST',
+   data: {
+    _token: csrfToken,
+    id
+   }
+  });
+ }
+
+ $('.mark-as-read').click(function() {
+  let request = sendMarkRequest($(this).data('id'));
+
+  request.done(() => {
+   $(this).parents('div.alert').remove();
+  });
+ });
+
+ $('#mark-all').click(function() {
+  let request = sendMarkRequest();
+
+  request.done(() => {
+   $('div.alert').remove();
+  })
+ });
+});
+</script>
+@endif
+
 @endsection

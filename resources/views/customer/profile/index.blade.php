@@ -74,9 +74,10 @@
             selectable:true,
             selectHelper: true,
             eventClick: function(event) {
-                if (confirm("View event details?")) {
-                    window.location.href = "{{ url('/full-calendar/event') }}" + event.id;
-                }
+                window.location.href = "{{ url('/full-calendar/event') }}" + event.id;
+                // if (confirm("View event details?")) {
+
+                // }
             }
         });
 

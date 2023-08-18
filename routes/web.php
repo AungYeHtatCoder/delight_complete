@@ -4,7 +4,6 @@ use App\Http\Controllers\Admin\EventCalendarController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\EventNotificationController;
-use App\Http\Controllers\Admin\HomeController;
 
 Route::get('/', function () {
     return view('frontend.index');
@@ -20,8 +19,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::name('admin.')->group(function () {
     // rotues middleware admin group
     Route::middleware(['auth'])->group(function () {
+        // user registration notification routes
         Route::get('/user-noti', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('user-noti');
+        // mark as read user registration notification routes
     Route::post('/mark-as-read', [App\Http\Controllers\Admin\HomeController::class, 'markNotification'])->name('markNotification');
+        // get event notification routes
+        Route::get('/get-event-notification', [App\Http\Controllers\Admin\GetEventNotificationController::class, 'index'])->name('get-event-notification');
+        // mark as read event notification routes
+        Route::post('/mark-event-as-read', [App\Http\Controllers\Admin\GetEventNotificationController::class, 'markEventNotification'])->name('markEventNotification');
         // permission resource routes
         Route::resource('/permissions',App\Http\Controllers\Admin\PermissionController::class);
         // role resource routes
@@ -31,6 +36,9 @@ Route::name('admin.')->group(function () {
         // profile resource rotues
         Route::resource('/profiles', App\Http\Controllers\Admin\ProfileController::class);
         // plan resources route
+        Route::resource('/plans', App\Http\Controllers\Admin\PlansController::class);
+        // service resources route
+        Route::resource('/services', App\Http\Controllers\Admin\ServiceController::class);
 
         // our_client resource rotues
         Route::resource('/our_clients', App\Http\Controllers\Admin\OurClientsController::class);
@@ -43,8 +51,16 @@ Route::name('admin.')->group(function () {
         Route::get('/client-calendar/{id}', [EventCalendarController::class,'clientCalendar']);
         Route::post('/client-calendar/action/{id}', [EventCalendarController::class,'clientCalendarAction']);
         Route::get('/profile', [EventCalendarController::class, 'profile']);
-        
+
         Route::get('/full-calendar/event{id}', [EventCalendarController::class, 'eventDetail']);
+
+        //service sample crud
+        Route::get('/samples', [SampleController::class, 'index']);
+        Route::get('/samples/create', [SampleController::class, 'create']);
+        Route::post('/samples/create', [SampleController::class, 'store']);
+        Route::get('/samples/edit/{id}', [SampleController::class, 'edit']);
+        Route::post('/samples/edit/{id}', [SampleController::class, 'update']);
+        Route::get('/samples/delete/{id}', [SampleController::class, 'delete']);
 
 
         // Define a route for adding an event

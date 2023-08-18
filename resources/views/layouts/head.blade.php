@@ -6,6 +6,7 @@
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+ <meta name="csrf-token" content="{{ csrf_token() }}">
  <meta name="description"
   content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
  <meta name="keywords"
@@ -14,7 +15,8 @@
  <title>Future of IT & Digital Marketing</title>
  <link rel="icon" href="{{ asset('assets/img/logo.png') }}">
  <link rel="apple-touch-icon" href="{{ asset('admin_app/app-assets/images/ico/apple-icon-120.png') }}">
- {{-- <link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin_app/app-assets/images/ico/favicon.ico') }}"> --}}
+ {{-- <link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin_app/app-assets/images/ico/favicon.ico') }}">
+ --}}
  <link
   href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CQuicksand:300,400,500,700"
   rel="stylesheet">

@@ -109,9 +109,9 @@
          class="flag-icon flag-icon-de"></i> German</a></div>
      </li>
      <!-- notification start -->
-     <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
-       data-toggle="dropdown"><i class="ficon ft-bell"></i><span
-        class="badge badge-pill badge-danger badge-up badge-glow">
+     <li class="dropdown dropdown-notification nav-item">
+      <a class="nav-link nav-link-label" href="#" data-toggle="dropdown">
+       <i class="ficon ft-bell"></i><span class="badge badge-pill badge-danger badge-up badge-glow">
 
         @if(Auth::check())
         {{ Auth::user()->unreadNotifications->count() }}
@@ -135,74 +135,24 @@
          @endif
         </span>
        </li>
-       <li class="scrollable-container media-list w-100"><a href="javascript:void(0)">
+       <li class="scrollable-container media-list w-100">
+        <a href="{{ auth()->user()->is_admin ? url('/user-noti') : url('/get-event-notification') }}">
          <div class="media">
-          <div class="media-left align-self-center"><i class="ft-plus-square icon-bg-circle bg-cyan mr-0"></i></div>
+          <div class="media-left align-self-center">
+           <i class="ft-plus-square icon-bg-circle bg-cyan mr-0"></i>
+          </div>
           <div class="media-body">
-           <h6 class="media-heading">You have new order!</h6>
            @if(auth()->user()->is_admin)
-           @if($notifications)
-           @forelse($notifications as $notification)
-           @if(is_array($notification->data))
-           <p class="notification-text font-small-3 text-muted">
-            User: {{ $notification->data['name'] ?? '' }}
-            Email: ({{ $notification->data['email'] ?? '' }})
-            has just registered.
-           </p>
-           <small>
-            <time class="media-meta text-muted" datetime="{{ $notification->created_at->toIso8601String() }}">
-             {{ $notification->created_at->diffForHumans() }}
-            </time>
-           </small>
-           <a href="#" class="float-right mark-as-read" data-id="{{ $notification->id }}">
-            Mark as read
-           </a>
-           @endif
-           @empty
-           There are no new notifications
-           @endforelse
-           @endif
+           <h6 class="media-heading">You have new User!</h6>
            @else
+           <!-- Display appropriate content for is_user -->
+           <h6>Your Event has been added </h6>
            @endif
+          </div>
+         </div>
+        </a>
+       </li>
 
-          </div>
-        </a><a href="javascript:void(0)">
-         <div class="media">
-          <div class="media-left align-self-center"><i
-            class="ft-download-cloud icon-bg-circle bg-red bg-darken-1 mr-0"></i></div>
-          <div class="media-body">
-           <h6 class="media-heading red darken-1">99% Server load</h6>
-           <p class="notification-text font-small-3 text-muted">Aliquam tincidunt mauris eu risus.</p><small>
-            <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">Five hour ago</time></small>
-          </div>
-         </div>
-        </a><a href="javascript:void(0)">
-         <div class="media">
-          <div class="media-left align-self-center"><i
-            class="ft-alert-triangle icon-bg-circle bg-yellow bg-darken-3 mr-0"></i></div>
-          <div class="media-body">
-           <h6 class="media-heading yellow darken-3">Warning notifixation</h6>
-           <p class="notification-text font-small-3 text-muted">Vestibulum auctor dapibus neque.</p><small>
-            <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">Today</time></small>
-          </div>
-         </div>
-        </a><a href="javascript:void(0)">
-         <div class="media">
-          <div class="media-left align-self-center"><i class="ft-check-circle icon-bg-circle bg-cyan mr-0"></i></div>
-          <div class="media-body">
-           <h6 class="media-heading">Complete the task</h6><small>
-            <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">Last week</time></small>
-          </div>
-         </div>
-        </a><a href="javascript:void(0)">
-         <div class="media">
-          <div class="media-left align-self-center"><i class="ft-file icon-bg-circle bg-teal mr-0"></i></div>
-          <div class="media-body">
-           <h6 class="media-heading">Generate monthly report</h6><small>
-            <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">Last month</time></small>
-          </div>
-         </div>
-        </a></li>
        <li class="dropdown-menu-footer"><a class="dropdown-item text-muted text-center" href="javascript:void(0)">Read
          all notifications</a></li>
       </ul>
