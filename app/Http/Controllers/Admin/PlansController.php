@@ -53,7 +53,7 @@ class PlansController extends Controller
             $servicesWithQuantities = [];
 
             foreach ($validatedData['services'] as $serviceId => $quantity) {
-                if ($quantity > 0) {
+                if ($quantity >= 0) {
                     $servicesWithQuantities[$serviceId] = ['qty' => $quantity];
                 }
             }
@@ -112,7 +112,7 @@ class PlansController extends Controller
             $servicesWithQuantities = [];
 
             foreach ($validatedData['services'] as $serviceId => $quantity) {
-                if ($quantity > 0) {
+                if ($quantity >= 0) {
                     $servicesWithQuantities[$serviceId] = ['qty' => $quantity];
                 }
             }
