@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\EventCalendarController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\SampleController;
+use App\Http\Controllers\Admin\EventCalendarController;
 use App\Http\Controllers\Admin\EventNotificationController;
 
 Route::get('/', function () {
@@ -12,10 +13,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-
-
 Route::name('admin.')->group(function () {
     // rotues middleware admin group
     Route::middleware(['auth'])->group(function () {

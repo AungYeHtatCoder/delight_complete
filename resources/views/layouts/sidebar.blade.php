@@ -52,7 +52,8 @@
    <li><a class="menu-item" href="form-layout-horizontal.html"><i></i><span data-i18n="Horizontal Forms">Motion
       Video</span></a>
    </li>
-   <li><a class="menu-item" href=""><i></i><span data-i18n="Hidden Labels">Service Samples</span></a>
+   <li><a class="menu-item" href="{{ url('/samples') }}"><i></i><span data-i18n="Hidden Labels">Service
+      Samples</span></a>
    </li>
    <li><a class="menu-item" href="form-layout-form-actions.html"><i></i><span data-i18n="Form Actions">Form
       Actions</span></a>
