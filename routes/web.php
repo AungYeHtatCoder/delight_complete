@@ -19,8 +19,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::name('admin.')->group(function () {
     // rotues middleware admin group
     Route::middleware(['auth'])->group(function () {
+        // user registration notification routes
         Route::get('/user-noti', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('user-noti');
+        // mark as read user registration notification routes
     Route::post('/mark-as-read', [App\Http\Controllers\Admin\HomeController::class, 'markNotification'])->name('markNotification');
+        // get event notification routes
+        Route::get('/get-event-notification', [App\Http\Controllers\Admin\GetEventNotificationController::class, 'index'])->name('get-event-notification');
+        // mark as read event notification routes
+        Route::post('/mark-event-as-read', [App\Http\Controllers\Admin\GetEventNotificationController::class, 'markEventNotification'])->name('markEventNotification');
         // permission resource routes
         Route::resource('/permissions',App\Http\Controllers\Admin\PermissionController::class);
         // role resource routes

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Admin\Event;
-use App\Models\Admin\Role;
 use App\Models\User;
+use App\Models\Admin\Role;
+use App\Models\Admin\Event;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\EventNotification;
 
 class EventCalendarController extends Controller
 {
@@ -93,8 +94,11 @@ class EventCalendarController extends Controller
     				'title'		=>	$request->title,
     				'start'		=>	$request->start,
     				'end'		=>	$request->end,
-                    'user_id'   =>  $id
+        'user_id'   =>  $id
     			]);
+							// Dispatch event notification
+            $user = User::find($id);
+            $user->notify(new EventNotification($event));
 
     			return response()->json($event);
     		}

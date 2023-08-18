@@ -1,5 +1,55 @@
 @extends('layouts.admin_app')
+@section('styles')
+<style>
+/* Add your custom CSS styles here */
 
+.notification-item {
+ margin-bottom: 10px;
+ padding: 10px;
+ border: 1px solid #28a745;
+ background-color: #f0f8ea;
+ border-radius: 5px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
+.notification-content {
+ flex-grow: 1;
+}
+
+.notification-time {
+ font-weight: bold;
+ margin-right: 10px;
+}
+
+.mark-as-read {
+ color: #007bff;
+ text-decoration: none;
+ cursor: pointer;
+}
+
+.mark-all-link {
+ display: block;
+ text-align: center;
+ margin-top: 10px;
+ font-weight: bold;
+}
+
+.no-notifications {
+ text-align: center;
+ color: #dc3545;
+ font-weight: bold;
+ margin-top: 10px;
+}
+
+.user-logged-in {
+ text-align: center;
+ font-weight: bold;
+ margin-top: 10px;
+}
+</style>
+@endsection
 @section('content')
 <div class="content-header row">
  <div class="content-header-light col-12">
@@ -9,11 +59,11 @@
     <div class="row breadcrumbs-top">
      <div class="breadcrumb-wrapper col-12">
       <ol class="breadcrumb">
-       <li class="breadcrumb-item"><a href="{{ route('home') }}>Home</a>
+       <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a>
        </li>
        {{-- <li class="breadcrumb-item"><a href="#">DataTables</a>
        </li> --}}
-       <li class=" breadcrumb-item active">User Registration Notification Dashboard
+       <li class="breadcrumb-item active">Customer Content Event Notification Dashboard
        </li>
       </ol>
      </div>
@@ -52,28 +102,38 @@
  </div>
  @endif
 
- @if(auth()->user()->is_admin)
+ @if(auth()->user()->is_user)
  @forelse($notifications as $notification)
- <div class="alert alert-success" role="alert">
-  [{{ $notification->created_at }}] User {{ $notification->data['name'] }} ({{ $notification->data['email'] }}) has just
-  registered.
+ <div class="alert alert-success notification-item" role="alert">
+  <div class="notification-content">
+   <span class="notification-time">
+    [{{ $notification->created_at }}]
+   </span>
+   Event: {{ $notification->data['events']['title'] }} ({{ $notification->data['events']['start'] }}) has just Added.
+  </div>
   <a href="#" class="float-right mark-as-read" data-id="{{ $notification->id }}">
    Mark as read
   </a>
  </div>
 
  @if($loop->last)
- <a href="#" id="mark-all">
+ <a href="#" id="mark-all" class="mark-all-link">
   Mark all as read
  </a>
  @endif
  @empty
- There are no new notifications
+ <div class="no-notifications">
+  There are no new notifications
+ </div>
  @endforelse
  @else
- You are logged in!
+ <div class="user-logged-in">
+  You are logged in!
+ </div>
  @endif
 </div>
+
+
 @endsection
 
 @section('scripts')
@@ -84,7 +144,7 @@
 $(function() {
  function sendMarkRequest(id = null) {
   let csrfToken = $('meta[name="csrf-token"]').attr('content');
-  return $.ajax("{{ route('admin.markNotification') }}", {
+  return $.ajax("{{ route('admin.markEventNotification') }}", {
    method: 'POST',
    data: {
     _token: csrfToken,

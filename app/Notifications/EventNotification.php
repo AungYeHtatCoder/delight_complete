@@ -7,16 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class EventAddNotification extends Notification
+class EventNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+     protected $event;
+
+    public function __construct($event)
     {
-        //
+        $this->event = $event;
     }
 
     /**
@@ -26,19 +28,13 @@ class EventAddNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
-    {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
-    }
+    
 
     /**
      * Get the array representation of the notification.
@@ -47,8 +43,11 @@ class EventAddNotification extends Notification
      */
     public function toArray(object $notifiable): array
     {
-        return [
-            //
+       return [
+            'title' => $this->event->title,
+            'start' => $this->event->start,
+            'end' => $this->event->end,
+            // Add other relevant event data
         ];
     }
 }
