@@ -40,6 +40,9 @@ Route::name('admin.')->group(function () {
         // our_client resource rotues
         Route::resource('/our_clients', App\Http\Controllers\Admin\OurClientsController::class);
 
+        // our_team resource rotues
+        Route::resource('/our_teams', App\Http\Controllers\Admin\OurteamsController::class);
+
 
         // content-calendar routes
         Route::get('/full-calendar', [EventCalendarController::class, 'index']);

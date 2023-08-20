@@ -37,6 +37,10 @@
       Clients
      </span></a>
    </li>
+   <li><a class="menu-item" href="{{ route('admin.our_teams.index') }}"><i></i><span data-i18n="Basic Buttons">Our
+      Teams
+     </span></a>
+   </li>
   </ul>
  </li>
 
@@ -61,17 +65,16 @@
    <span class="menu-title" data-i18n="Components">Samples Details</span>
   </a>
   <ul class="menu-content">
-   <li><a class="menu-item" href="{{ url('/samples/motion_video/') }}"><i></i><span
-      data-i18n="Alerts">Motion Video</span></a>
+   <li><a class="menu-item" href="{{ url('/samples/motion_video/') }}"><i></i><span data-i18n="Alerts">Motion
+      Video</span></a>
    </li>
-   <li><a class="menu-item" href="{{ url('/samples/art_photo/') }}"><i></i><span
-      data-i18n="Alerts">Art Photo/Comic</span></a>
+   <li><a class="menu-item" href="{{ url('/samples/art_photo/') }}"><i></i><span data-i18n="Alerts">Art
+      Photo/Comic</span></a>
    </li>
-   <li><a class="menu-item" href="{{ url('/samples/graphic_photo/') }}"><i></i><span
-      data-i18n="Alerts">Graphic Photo</span></a>
+   <li><a class="menu-item" href="{{ url('/samples/graphic_photo/') }}"><i></i><span data-i18n="Alerts">Graphic
+      Photo</span></a>
    </li>
-   <li><a class="menu-item" href="{{ url('/samples/boosting/') }}"><i></i><span
-      data-i18n="Alerts">Boosting</span></a>
+   <li><a class="menu-item" href="{{ url('/samples/boosting/') }}"><i></i><span data-i18n="Alerts">Boosting</span></a>
    </li>
 
   </ul>
