@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('service_id');
             $table->string('photo')->nullable();
             $table->string('video')->nullable();
+            $table->longText('content')->nullable();
             $table->timestamps();
 
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');

@@ -90,7 +90,7 @@
          <th>No</th>
          <th>Name</th>
          <th>Service</th>
-         <th>Photo/Video</th>
+         <th>Sample</th>
          <th>Actions</th>
         </tr>
        </thead>
@@ -104,17 +104,22 @@
             <td>{{ $sample->name }}</td>
             <td>{{ $sample->service->service_name }}</td>
             <td>
-                @if ($sample->photo)
-                <img src="{{ asset('assets/img/samples/img/'.$sample->photo) }}" width="100px" alt="">
+                @if ($sample->content)
+                {!! $sample->content !!}
+                @else
+                    @if ($sample->photo)
+                    <img src="{{ asset('assets/img/samples/img/'.$sample->photo) }}" width="100px" alt="">
+                    @endif
+                    @if ($sample->video)
+                    <video width="100" height="50" controls>
+                        <source src="{{ asset('assets/img/samples/video/'.$sample->video) }}" type="video/mp4">
+                        <source src="{{ asset('assets/img/samples/video/'.$sample->video) }}" type="video/quicktime">
+                        <source src="{{ asset('assets/img/samples/video/'.$sample->video) }}" type="video/x-msvideo">
+                        Your browser does not support the video tag.
+                    </video>
+                    @endif
                 @endif
-                @if ($sample->video)
-                <video width="100" height="50" controls>
-                    <source src="{{ asset('assets/img/samples/video/'.$sample->video) }}" type="video/mp4">
-                    <source src="{{ asset('assets/img/samples/video/'.$sample->video) }}" type="video/quicktime">
-                    <source src="{{ asset('assets/img/samples/video/'.$sample->video) }}" type="video/x-msvideo">
-                    Your browser does not support the video tag.
-                </video>
-                @endif
+
             </td>
             <td>
                 {{-- <a href="{{ url('/samples/edit/'.$sample->id) }}" class="btn btn-sm btn-success"><i class="fas fa-pen-to-square"></i></a> --}}

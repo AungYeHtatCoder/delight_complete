@@ -12,7 +12,8 @@ class Sample extends Model
         'name',
         'service_id',
         'photo',
-        'video'
+        'video',
+        'content'
     ];
 
     public function service(){

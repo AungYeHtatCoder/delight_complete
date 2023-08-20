@@ -78,48 +78,53 @@
        {{ session('success') }}
       </div>
       @endif
+      <div class="container">
+        <table class="table table-striped table-bordered dataex-res-configuration">
+            <thead>
+             <tr>
+              <th>No</th>
+              <th>Name</th>
+              <th>Service</th>
+              <th>Samples</th>
+              <th>Actions</th>
+             </tr>
+            </thead>
+            <tbody>
+             @php
+                 $no =1;
+             @endphp
+             @foreach ($samples as $sample)
+             <tr>
+                 <td>{{ $no++ }}</td>
+                 <td>{{ $sample->name }}</td>
+                 <td>{{ $sample->service->service_name }}</td>
+                 <td>
+                     @if ($sample->photo)
+                     <img src="{{ asset('assets/img/samples/img/'.$sample->photo) }}" width="100px" alt="">
+                     @endif
+                     @if ($sample->video)
+                     <video width="100" height="50" controls>
+                         <source src="{{ asset('assets/img/samples/video/'.$sample->video) }}" type="video/mp4">
+                         <source src="{{ asset('assets/img/samples/video/'.$sample->video) }}" type="video/quicktime">
+                         <source src="{{ asset('assets/img/samples/video/'.$sample->video) }}" type="video/x-msvideo">
+                         Your browser does not support the video tag.
+                     </video>
+                     @endif
+                     @if ($sample->content)
+                     {!! $sample->content !!}
+                     @endif
+                 </td>
+                 <td>
+                     <a href="{{ url('/samples/edit/'.$sample->id) }}" class="btn btn-sm btn-success"><i class="fas fa-pen-to-square"></i></a>
+                     <a href="{{ url('/samples/delete/'.$sample->id) }}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                     {{-- <button class="btn btn-sm btn-danger delete_id" data-target="#deleteModal" data-toggle="modal" data-id="{{ $sample->id }}"><i class="fas fa-trash"></i></button> --}}
+                 </td>
+             </tr>
+             @endforeach
+            </tbody>
+           </table>
+      </div>
 
-      <table class="table table-striped table-bordered dataex-res-configuration">
-       <thead>
-        <tr>
-         <th>No</th>
-         <th>Name</th>
-         <th>Service</th>
-         <th>Photo/Video</th>
-         <th>Actions</th>
-        </tr>
-       </thead>
-       <tbody>
-        @php
-            $no =1;
-        @endphp
-        @foreach ($samples as $sample)
-        <tr>
-            <td>{{ $no++ }}</td>
-            <td>{{ $sample->name }}</td>
-            <td>{{ $sample->service->service_name }}</td>
-            <td>
-                @if ($sample->photo)
-                <img src="{{ asset('assets/img/samples/img/'.$sample->photo) }}" width="100px" alt="">
-                @endif
-                @if ($sample->video)
-                <video width="100" height="50" controls>
-                    <source src="{{ asset('assets/img/samples/video/'.$sample->video) }}" type="video/mp4">
-                    <source src="{{ asset('assets/img/samples/video/'.$sample->video) }}" type="video/quicktime">
-                    <source src="{{ asset('assets/img/samples/video/'.$sample->video) }}" type="video/x-msvideo">
-                    Your browser does not support the video tag.
-                </video>
-                @endif
-            </td>
-            <td>
-                <a href="{{ url('/samples/edit/'.$sample->id) }}" class="btn btn-sm btn-success"><i class="fas fa-pen-to-square"></i></a>
-                <a href="{{ url('/samples/delete/'.$sample->id) }}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                {{-- <button class="btn btn-sm btn-danger delete_id" data-target="#deleteModal" data-toggle="modal" data-id="{{ $sample->id }}"><i class="fas fa-trash"></i></button> --}}
-            </td>
-        </tr>
-        @endforeach
-       </tbody>
-      </table>
      </div>
     </div>
    </div>

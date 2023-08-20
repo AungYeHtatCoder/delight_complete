@@ -1,5 +1,9 @@
 @extends('layouts.admin_app')
 
+@section('styles')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+@endsection
+
 @section('content')
 <div class="content-header row">
  <div class="content-header-light col-12">
@@ -93,16 +97,26 @@
                 </select>
                </div>
                <div class="form-group col-12 mb-2">
-                <label for="sample">Choose Photo/Video</label>
-                <input type="file" placeholder="" name="file" class="form-control">
+                <label for="sample">
+                    <input type="radio" name="sample" id="sample" checked>
+                    Choose Photo/Video
+                </label>
+                <input type="file" placeholder="" id="photo" name="file" class="form-control">
+               </div>
+               <div class="form-group col-12 mb-2">
+                <label for="check">
+                    <input type="radio" name="sample" id="check">  Content </label>
+                    <div class="d-none content-writing">
+                        <textarea name="content" id="content" cols="30" rows="10" class="form-control d-none" placeholder="Enter Content"></textarea>
+                    </div>
                </div>
              </div>
             </div>
 
             <div class="form-actions text-center">
-             <button type="button" class="btn btn-warning mr-1">
-              <i class="ft-x"></i> Cancel
-             </button>
+                <a class="btn btn-warning mr-1" href="{{ url('/samples/') }}">
+                    <i class="ft-x"></i> Cancel
+                </a>
              <button type="submit" class="btn btn-primary" id="save-button">
               <i class="la la-check-square-o"></i> Save
              </button>
@@ -126,8 +140,37 @@
 
 @section('scripts')
 <script src="{{ asset('admin_app/app-assets/vendors/js/material-vendors.min.js') }}"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script>
+    $(document).ready(function(){
+        $("#check").click(function(){
+            $(".content-writing").toggleClass('d-none');
+            $("#photo").toggleClass('d-none');
+        })
+        $("#sample").click(function(){
+            $(".content-writing").toggleClass('d-none');
+            $("#photo").toggleClass('d-none');
+        })
+        $('#content').summernote({
+            placeholder: 'Enter Content',
+            tabsize: 2,
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                // ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+    })
+
+
+  </script>
+<script>
+
 // document.addEventListener('DOMContentLoaded', function() {
 //  const planForm = document.getElementById('plan-form');
 //  const saveButton = document.getElementById('save-button');

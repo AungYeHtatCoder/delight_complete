@@ -27,45 +27,51 @@ class SampleController extends Controller
         $request->validate([
             'name' => 'required',
             'service_id' => 'required',
-            'file' => 'required',
         ]);
 
-        if ($request->hasFile('file')) {
-                $file = $request->file('file');
+        if($request->file('file')){
+            $file = $request->file('file');
 
-                // Get the file extension
-                $extension = $file->getClientOriginalExtension();
+            // Get the file extension
+            $extension = $file->getClientOriginalExtension();
 
-                // Check if it's an image
-                if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
-                    $image = $request->file('file');
-                    $ext = $image->getClientOriginalExtension();
-                    $filename = uniqid('samples') . '.' . $ext; // Generate a unique filename
-                    $image->move(public_path('assets/img/samples/img/'), $filename); // Save the file to the pub
+            // Check if it's an image
+            if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
+                $image = $request->file('file');
+                $ext = $image->getClientOriginalExtension();
+                $filename = uniqid('samples') . '.' . $ext; // Generate a unique filename
+                $image->move(public_path('assets/img/samples/img/'), $filename); // Save the file to the pub
 
-                    Sample::create([
-                        'name' => $request->name,
-                        'service_id' => $request->service_id,
-                        'photo' => $filename,
-                    ]);
-                    return redirect('/samples')->with('success', 'New Sample Created Successfully.');
-                }
+                Sample::create([
+                    'name' => $request->name,
+                    'service_id' => $request->service_id,
+                    'photo' => $filename,
+                ]);
+                return redirect('/samples')->with('success', 'New Sample Created Successfully.');
+            }
 
-                // Check if it's a video
-                if (in_array($extension, ['mp4', 'mov', 'avi'])) {
-                    $video = $request->file('file');
-                    $videoName = time() . '.' . $video->getClientOriginalExtension();
-                    $video->move(public_path('assets/img/samples/video/'), $videoName);
+            // Check if it's a video
+            if (in_array($extension, ['mp4', 'mov', 'avi'])) {
+                $video = $request->file('file');
+                $videoName = time() . '.' . $video->getClientOriginalExtension();
+                $video->move(public_path('assets/img/samples/video/'), $videoName);
 
-                    Sample::create([
-                        'name' => $request->name,
-                        'service_id' => $request->service_id,
-                        'video' => $videoName,
-                    ]);
-                    return redirect('/samples')->with('success', 'New Sample Created Successfully.');
-                }
-
+                Sample::create([
+                    'name' => $request->name,
+                    'service_id' => $request->service_id,
+                    'video' => $videoName,
+                ]);
+                return redirect('/samples')->with('success', 'New Sample Created Successfully.');
+            }
+        }else{
+            Sample::create([
+                'name' => $request->name,
+                'service_id' => $request->service_id,
+                'content' => $request->content,
+            ]);
+            return redirect('/samples')->with('success', 'New Sample Created Successfully.');
         }
+        return redirect()->back()->with('error', "Sample Created Fail");
     }
 
     public function edit($id)
@@ -83,6 +89,25 @@ class SampleController extends Controller
             'name' => 'required',
             'service_id' => 'required',
         ]);
+        if($request->content != $sample->content){
+            if($sample->photo){
+                File::delete(public_path('assets/img/samples/img/'.$sample->photo));
+                $sample->photo = null;
+                $sample->save();
+            }
+            if($sample->video){
+                File::delete(public_path('assets/img/samples/video/'.$sample->video));
+                $sample->video = null;
+                $sample->save();
+            }
+
+            $sample->update([
+                'name' => $request->name,
+                'service_id' => $request->service_id,
+                'content' => $request->content,
+            ]);
+            return redirect('/samples/')->with('success', 'Sample Updated Successfully.');
+        }
         if(!$request->file('file')){
             if($sample->photo){
                 $filename = $sample->photo;
@@ -127,6 +152,7 @@ class SampleController extends Controller
                     'name' => $request->name,
                     'service_id' => $request->service_id,
                     'photo' => $filename,
+                    'content' => ''
                 ]);
                 return redirect('/samples/')->with('success', 'Sample Updated Successfully.');
             }
@@ -150,10 +176,12 @@ class SampleController extends Controller
                     'name' => $request->name,
                     'service_id' => $request->service_id,
                     'video' => $videoName,
+                    'content' => ''
                 ]);
                 return redirect('/samples/')->with('success', 'Sample Updated Successfully.');
             }
         }
+
     }
 
 
@@ -171,20 +199,6 @@ class SampleController extends Controller
         }
         Sample::destroy($id);
         return redirect()->back()->with('success', "Sample Removed.");
-
-        // if ($sample) {
-        //     if ($sample->photo) {
-        //         File::delete(public_path('assets/img/samples/img/' . $sample->photo));
-        //     } elseif ($sample->video) {
-        //         File::delete(public_path('assets/img/samples/video/' . $sample->video));
-        //     }
-
-        //     $sample->delete();
-
-        //     return redirect()->back()->with('success', "Sample Removed.");
-        // }
-
-
     }
 
     public function detail($name){
@@ -209,11 +223,11 @@ class SampleController extends Controller
             $service = Service::where('service_name', 'Graphic Photo')->first();
             return view('admin.samples.detail', compact('samples', 'service'));
         }
-        if($name === "boosting"){
+        if($name === "content"){
             $samples = Sample::whereHas('service', function($query) {
-                $query->where('service_name', 'Boosting');
+                $query->where('service_name', 'Content');
             })->get();
-            $service = Service::where('service_name', 'Boosting')->first();
+            $service = Service::where('service_name', 'Content')->first();
             return view('admin.samples.detail', compact('samples', 'service'));
         }
 

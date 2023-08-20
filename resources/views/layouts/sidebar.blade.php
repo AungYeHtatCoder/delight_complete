@@ -74,7 +74,7 @@
    <li><a class="menu-item" href="{{ url('/samples/graphic_photo/') }}"><i></i><span data-i18n="Alerts">Graphic
       Photo</span></a>
    </li>
-   <li><a class="menu-item" href="{{ url('/samples/boosting/') }}"><i></i><span data-i18n="Alerts">Boosting</span></a>
+   <li><a class="menu-item" href="{{ url('/samples/content/') }}"><i></i><span data-i18n="Alerts">Content</span></a>
    </li>
 
   </ul>
