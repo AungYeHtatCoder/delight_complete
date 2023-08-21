@@ -28,7 +28,7 @@
     }
 
     /**
-     * Easy on scroll event listener 
+     * Easy on scroll event listener
      */
     const onscroll = (el, listener) => {
         el.addEventListener('scroll', listener)
@@ -159,7 +159,7 @@
     }
 
     /**
-     * Initiate  glightbox 
+     * Initiate  glightbox
      */
     const glightbox = GLightbox({
         selector: '.glightbox'
@@ -213,7 +213,7 @@
     });
 
     /**
-     * Initiate portfolio lightbox 
+     * Initiate portfolio lightbox
      */
     const portfolioLightbox = GLightbox({
         selector: '.portfolio-lightbox'
@@ -249,3 +249,9 @@
     });
 
 })()
+
+
+
+
+
+

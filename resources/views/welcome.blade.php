@@ -2,6 +2,14 @@
 
 
 @section('content')
+<!-- ======= Header ======= -->
+@include('user_layouts.nav')
+<!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+@include('user_layouts.hero')
+<!-- End Hero -->
+
  <!-- ======= Clients Section ======= -->
  @include('user_layouts.client_section')
  <!-- End Cliens Section -->

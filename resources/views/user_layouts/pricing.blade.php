@@ -18,7 +18,7 @@
                         <li><i class="bx bx-check"></i> {{ $service->service_name }} ({{ $service->pivot->qty }}{{ $service->service_name == "Boosting" ? "$" : "" }})</li>
                         @endforeach
                     </ul>
-                    <a href="register.html" class="buy-btn" title="Buy Now">Get Started</a>
+                    <a href="{{ url('/login') }}" class="buy-btn" title="Buy Now">Get Started</a>
                 </div>
             </div>
 
@@ -33,7 +33,7 @@
                         <li><i class="bx bx-check"></i> {{ $service->service_name }} ({{ $service->pivot->qty }}{{ $service->service_name == "Boosting" ? "$" : "" }})</li>
                         @endforeach
                     </ul>
-                    <a href="register.html" class="buy-btn">Get Started</a>
+                    <a href="{{ url('/login') }}" class="buy-btn">Get Started</a>
                 </div>
             </div>
 
@@ -47,7 +47,7 @@
                         <li><i class="bx bx-check"></i> {{ $service->service_name }} ({{ $service->pivot->qty }}{{ $service->service_name == "Boosting" ? "$" : "" }})</li>
                         @endforeach
                     </ul>
-                    <a href="register.html" class="buy-btn">Get Started</a>
+                    <a href="{{ url('/login') }}" class="buy-btn">Get Started</a>
                 </div>
             </div>
 

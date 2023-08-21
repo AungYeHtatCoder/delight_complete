@@ -1,20 +1,11 @@
 @include('user_layouts.header')
 
-<body>
-
-    <!-- ======= Header ======= -->
-    @include('user_layouts.nav')
-    <!-- End Header -->
-
-    <!-- ======= Hero Section ======= -->
-    @include('user_layouts.hero')
-    <!-- End Hero -->
+<body onload="loadSavedLogin()">
 
     <main id="main">
 
         @yield('content')
 
-       
     </main>
     <!-- End #main -->
 

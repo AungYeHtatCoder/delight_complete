@@ -7,12 +7,26 @@ use App\Http\Controllers\Admin\EventCalendarController;
 use App\Http\Controllers\Admin\EventNotificationController;
 use App\Http\Controllers\Home\HomePageController;
 
+Auth::routes();
+
 //frontend routes
 Route::get('/', [HomePageController::class, 'index']);
+Route::get('/about-us', [HomePageController::class, 'about']);
+Route::get('/our-services', [HomePageController::class, 'service']);
+Route::get('/pricing', [HomePageController::class, 'pricing']);
+Route::get('/our-teams', [HomePageController::class, 'team']);
+Route::get('/our-clients', [HomePageController::class, 'clients']);
+Route::get('/contact-us', [HomePageController::class, 'contact']);
+Route::post('/sendMail', [HomePageController::class, 'sendMail']);
+
+Route::get('/login', [HomePageController::class, 'login']);
+//service sample pages
+Route::get('/service-samples/{name}', [HomePageController::class, 'sample']);
 
 
+//frontend routes
 
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::name('admin.')->group(function () {
