@@ -95,7 +95,7 @@
         <tr>
          <td>{{ ++$key }}</td>
          <td>{{ $client->client_name }}</td>
-         <td><img src="{{ asset('uploads/' . $client->logo) }}" width="50px" height="50px"
+         <td><img src="{{ asset('uploads/' . $client->logo) }}" width="50px"
            alt="{{ $client->name }} Logo">
          </td>
          <td>{{ $client->created_at->format('F j, Y') }}</td>

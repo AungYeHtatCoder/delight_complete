@@ -5,10 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SampleController;
 use App\Http\Controllers\Admin\EventCalendarController;
 use App\Http\Controllers\Admin\EventNotificationController;
+use App\Http\Controllers\Home\HomePageController;
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+//frontend routes
+Route::get('/', [HomePageController::class, 'index']);
+
+
 
 Auth::routes();
 

@@ -14,7 +14,7 @@ class OurClientsController extends Controller
      */
     public function index()
     {
-        $our_clients = OurClient::all();
+        $our_clients = OurClient::latest()->get();
         return view('admin.our_client.index', compact('our_clients'));
     }
 
