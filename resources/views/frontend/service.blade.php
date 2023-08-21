@@ -53,7 +53,7 @@
 
                 <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
                     <div class="icon-box">
-                        <div class="icon"><i class="bx bx-tachometer"></i></div>
+                        <div class="icon"><i class="bx bx-edit-alt"></i></div>
                         <h4><a href="{{ url('/service-samples/content/') }}">Content</a></h4>
                         <p>ထိထိမိမိလုပ်ဆောင်ပေးသွားမည့် Media buying.</p>
                     </div>
