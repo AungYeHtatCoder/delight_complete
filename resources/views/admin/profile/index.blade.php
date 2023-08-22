@@ -43,7 +43,7 @@
   <div class="card">
    <div class="text-center">
     <div class="card-body">
-     <img src="{{ Auth::user()->profile }}" class="rounded-circle  height-150" alt="Card image">
+     <img src="{{ asset('assets/img/profile/'.Auth::user()->profile) }}" class="rounded-circle" width="150px" height="150px" alt="Card image">
     </div>
     <div class="card-body">
      <h4 class="card-title">@if(Auth::check())
@@ -59,10 +59,9 @@
 
      <!-- Profile Photo Update Form -->
      <div class="card-body">
-      <form action="{{ route('admin.profiles.update', ['profile' => Auth::user()->id]) }}" method="post"
+      <form action="{{ url('/profiles/update/') }}" method="post"
        enctype="multipart/form-data">
        @csrf
-       @method('PUT')
        <div class="form-group">
         <label for="photo">Change Profile Photo</label>
         <input type="file" id="profile" class="form-control" name="profile">

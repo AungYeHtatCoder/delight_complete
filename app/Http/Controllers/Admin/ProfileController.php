@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+
 class ProfileController extends Controller
 {
     /**
@@ -57,7 +60,7 @@ class ProfileController extends Controller
      */
     public function update(UserRequest $request, User $profile)
     {
-       
+
         $data = $request->validated();
         //dd($data);
 
@@ -79,6 +82,28 @@ class ProfileController extends Controller
         $profile->update($data);
 
         return redirect()->route('admin.profiles.index')->with('toast_success', 'Profile updated successfully');
+    }
+
+    public function profileChange(Request $request){
+        $profile = $request->file('profile');
+        $ext = $profile->getClientOriginalExtension();
+        if($ext === "png" || $ext === "jpeg" || $ext === "jpg"){
+            $user = User::find(Auth::user()->id);
+            //delete existed profile
+            if($user->profile){
+                File::delete(public_path('assets/img/profile/'.$user->profile));
+            }
+            // image
+            $filename = uniqid('profile') . '.' . $ext; // Generate a unique filename
+            $profile->move(public_path('assets/img/profile/'), $filename); // Save the file to the pub
+
+            $user->update([
+                'profile' => $filename
+            ]);
+            return redirect()->back()->with('success', "Profile Updated.");
+        }else{
+            return redirect()->back()->with('error', "Please use validate file type!");
+        }
     }
 
 
