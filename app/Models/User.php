@@ -24,6 +24,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'profile',
         'email',
         'password',
     ];
@@ -108,7 +109,7 @@ class User extends Authenticatable
     {
         return $this->roles->flatMap->permissions->pluck('title')->contains($permission);
     }
- 
-    
-    
+
+
+
 }

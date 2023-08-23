@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SampleController;
 use App\Http\Controllers\Admin\EventCalendarController;
 use App\Http\Controllers\Admin\EventNotificationController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Home\HomePageController;
 
 Auth::routes();
@@ -46,8 +47,10 @@ Route::name('admin.')->group(function () {
         Route::resource('/roles', App\Http\Controllers\Admin\RolesController::class);
         // user resource routes
         Route::resource('/users', App\Http\Controllers\Admin\UsersController::class);
+
         // profile resource rotues
         Route::resource('/profiles', App\Http\Controllers\Admin\ProfileController::class);
+        Route::post('/profiles/update/', [ProfileController::class, 'profileChange']);
         // plan resources route
         Route::resource('/plans', App\Http\Controllers\Admin\PlansController::class);
         // service resources route
