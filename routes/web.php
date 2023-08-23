@@ -10,6 +10,11 @@ use App\Http\Controllers\Home\HomePageController;
 
 Auth::routes();
 
+// register routes false
+Route::get('/register', function () {
+    return redirect('/login');
+});
+
 //frontend routes
 Route::get('/', [HomePageController::class, 'index']);
 Route::get('/about-us', [HomePageController::class, 'about']);
