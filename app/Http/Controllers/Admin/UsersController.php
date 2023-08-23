@@ -47,7 +47,7 @@ class UsersController extends Controller
         ]);
         // assign role to user
         $user->roles()->sync($request->input('roles', []));
-        return redirect()->route('admin.users.index')->with('success', 'User created successfully');
+        return redirect()->route('admin.users.index')->with('toast_success', 'User created successfully');
     }
 
     /**
