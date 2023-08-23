@@ -12,7 +12,8 @@ use App\Models\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-
+use Gate;
+use Symfony\Component\HttpFoundation\Response;
 class ProfileController extends Controller
 {
     /**

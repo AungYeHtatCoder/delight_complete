@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\EventNotification;
-
+use Gate;
+use Symfony\Component\HttpFoundation\Response;
 class EventCalendarController extends Controller
 {
     public function index(Request $request)

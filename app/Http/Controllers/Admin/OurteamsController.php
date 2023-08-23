@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\OurTeams;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Gate;
+use Symfony\Component\HttpFoundation\Response;
 class OurteamsController extends Controller
 {
     /**

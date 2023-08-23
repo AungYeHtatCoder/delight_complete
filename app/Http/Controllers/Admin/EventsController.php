@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Event;
+use Gate;
+use Symfony\Component\HttpFoundation\Response;
 class EventsController extends Controller
 {
     /**

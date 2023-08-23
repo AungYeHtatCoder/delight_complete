@@ -6,7 +6,8 @@ use App\Models\Admin\Role;
 use Illuminate\Http\Request;
 use App\Models\Admin\Permission;
 use App\Http\Controllers\Controller;
-
+use Gate;
+use Symfony\Component\HttpFoundation\Response;
 class RolesController extends Controller
 {
     /**
@@ -14,6 +15,7 @@ class RolesController extends Controller
      */
     public function index()
     {
+        abort_if(Gate::denies('role_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $roles = Role::all();
         return view('admin.roles.index', compact('roles'));
     }

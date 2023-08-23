@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Gate;
+use Symfony\Component\HttpFoundation\Response;
 class GetEventNotificationController extends Controller
 {
     public function index()

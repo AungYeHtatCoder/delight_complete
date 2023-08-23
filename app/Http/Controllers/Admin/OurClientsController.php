@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Admin\OurClient;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-
+use Gate;
+use Symfony\Component\HttpFoundation\Response;
 class OurClientsController extends Controller
 {
     /**

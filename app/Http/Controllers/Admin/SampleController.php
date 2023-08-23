@@ -7,7 +7,8 @@ use App\Models\Admin\Sample;
 use App\Models\Admin\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-
+use Gate;
+use Symfony\Component\HttpFoundation\Response;
 class SampleController extends Controller
 {
     public function index()
