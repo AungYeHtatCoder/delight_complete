@@ -223,8 +223,8 @@
         Welcome, Guest
         @endif
        </span>
-       <span class="avatar avatar-online"><img
-         src="{{ asset('admin_app/app-assets/images/portrait/small/avatar-s-19.png') }}" alt="avatar"><i></i></span></a>
+       <span class="avatar avatar-online"><img src="{{ asset('assets/img/profile/'.Auth::user()->profile) }}"
+         alt="avatar"><i></i></span></a>
       <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i class="ft-user"></i> Edit
         Profile</a><a class="dropdown-item" href="#"><i class="ft-clipboard"></i> Todo</a><a class="dropdown-item"
         href="#"><i class="ft-check-square"></i> Task</a>
