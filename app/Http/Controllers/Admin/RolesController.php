@@ -6,7 +6,7 @@ use App\Models\Admin\Role;
 use Illuminate\Http\Request;
 use App\Models\Admin\Permission;
 use App\Http\Controllers\Controller;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 class RolesController extends Controller
 {

@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Permission;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Gate;
+//use Gate;
+use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 class UsersController extends Controller
 {

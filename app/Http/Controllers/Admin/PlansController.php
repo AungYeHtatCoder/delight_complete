@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Service;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 class PlansController extends Controller
 {
