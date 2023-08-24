@@ -98,3 +98,8 @@ Route::name('admin.')->group(function () {
     });
 
 });
+
+// any routes
+Route::any('{any}', function () {
+    return view('errors.404');
+})->where('any', '.*'); // any routes

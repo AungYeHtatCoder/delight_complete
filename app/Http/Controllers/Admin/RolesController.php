@@ -15,7 +15,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-        abort_if(Gate::denies('role_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('role_access'), Response::HTTP_FORBIDDEN, '403 Forbidden |You cannot  Access this page because you do not have permission');
         $roles = Role::all();
         return view('admin.roles.index', compact('roles'));
     }
@@ -25,6 +25,7 @@ class RolesController extends Controller
      */
     public function create()
     {
+        abort_if(Gate::denies('role_create'), Response::HTTP_FORBIDDEN, '403 Forbidden |You cannot  Access this page because you do not have permission');
         $permissions = Permission::all()->pluck('title', 'id');
         return response()->view('admin.roles.create', compact('permissions'));
     }
@@ -48,7 +49,8 @@ class RolesController extends Controller
      */
     public function show(Role $role)
     {
-    $role_detail = $role; // Remove the unnecessary find() method
+    abort_if(Gate::denies('role_show'), Response::HTTP_FORBIDDEN, '403 Forbidden |You cannot  Access this page because you do not have permission');
+        $role_detail = $role; // Remove the unnecessary find() method
     $permissions = Permission::all();
     return response()->view('admin.roles.show', compact('role_detail', 'permissions'));
     }
@@ -58,6 +60,7 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
+        abort_if(Gate::denies('role_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden |You cannot  Access this page because you do not have permission');
         $role = Role::find($id);
         $permissions = Permission::all()->pluck('title', 'id');
         return view('admin.roles.edit', compact('role', 'permissions'));
@@ -78,7 +81,8 @@ class RolesController extends Controller
      */
     public function destroy(Role $role)
     {
-         // delete
+        abort_if(Gate::denies('role_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden |You cannot  Access this page because you do not have permission');
+        // delete
         //$role = Role::find($role);
         $role->delete();
         // redirect

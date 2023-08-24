@@ -18,7 +18,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden |You cannot  Access this page because you do not have permission');
          
         // users data with order by id desc
         $users = User::orderBy('id', 'desc')->with('roles')->get();
@@ -30,7 +30,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden |You cannot  Access this page because you do not have permission');
         
         $roles = Role::all()->pluck('title', 'id');
         return response()->view('admin.users.create', compact('roles'));
@@ -56,7 +56,7 @@ class UsersController extends Controller
      */
     public function show(string $id)
     {
-        abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, '403 Forbidden |You cannot  Access this page because you do not have permission');
     
         $user_detail = User::with(['roles', 'roles.permissions'])->findOrFail($id);
     $roles = Role::all();
@@ -69,7 +69,7 @@ class UsersController extends Controller
      */
     public function edit(string $id)
     {
-        abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden |You cannot  Access this page because you do not have permission');
          
         $user_edit = User::find($id);
         $roles = Role::all()->pluck('title', 'id');
@@ -92,7 +92,7 @@ class UsersController extends Controller
      */
     public function destroy(string $id)
     {
-        abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden |You cannot  Access this page because you do not have permission');
         
         $user = User::find($id);
         $user->delete();

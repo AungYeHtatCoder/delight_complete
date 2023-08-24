@@ -65,7 +65,8 @@ class EventCalendarController extends Controller
 
     public function clients()
     {
-        $users = User::whereHas('roles', function($query) {
+        
+					$users = User::whereHas('roles', function($query) {
             $query->where('title', 'Customer');
         })->latest()->get();
     	return view('admin.calendar.clients', compact('users'));
@@ -140,11 +141,28 @@ class EventCalendarController extends Controller
     public function eventDetail($id)
     {
         $event = Event::find($id);
-        if(!$event){
-            return redirect('/home');
-        }elseif(Auth::user()->id !== $event->user_id){
-            return redirect('/home');
-        }
+        // event == user_id == auth user id
+								if($event->user_id == Auth::user()->id)
+								{
         return view('customer.profile.eventDetail', compact('event'));
+
+								}elseif($event !==	Auth::user()->id)
+								{
+												return redirect()->back();
+								}
+
+								else
+								{
+												return redirect()->back();
+								}
+
+								
+
+								// if(!$event){
+        //     return redirect('/home');
+        // }elseif(Auth::user()->id !== $event->user_id){
+        //     return redirect('/home');
+        // }
+        // return view('customer.profile.eventDetail', compact('event'));
     }
 }
