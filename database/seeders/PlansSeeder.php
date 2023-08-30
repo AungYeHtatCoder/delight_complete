@@ -14,10 +14,19 @@ class PlansSeeder extends Seeder
     public function run(): void
     {
         $plans = [
-            ['plan_name' => 'Budget Plan', 'plan_code' => 'BASIC', 'price' => '1'],
-            ['plan_name' => 'Advance Plan', 'plan_code' => 'ADVANCE', 'price' => '1'],
-            ['plan_name' => 'Smart Plan', 'plan_code' => 'SMART', 'price' => '1'],
-            ['plan_name' => 'Pro Plan', 'plan_code' => 'PRO', 'price' => '1'],
+            ['plan_name' => 'Budget Plan', 
+            'plan_code' => 'BASIC', 
+            'price' => '1',
+            'created_at' => '2023-02-10 14:00:26',
+            'updated_at' => '2023-02-10 14:00:26',
+        ],
+            ['plan_name' => 'Advance Plan', 'plan_code' => 'ADVANCE', 'price' => '1', 'created_at' => '2023-02-10 14:00:26',
+                'updated_at' => '2023-02-10 14:00:26',],
+            ['plan_name' => 'Smart Plan', 'plan_code' => 'SMART', 'price' => '1', 'created_at' => '2023-02-10 14:00:26',
+                'updated_at' => '2023-02-10 14:00:26',],
+            ['plan_name' => 'Pro Plan', 'plan_code' => 'PRO', 'price' => '1'
+                , 'created_at' => '2023-02-10 14:00:26',
+                'updated_at' => '2023-02-10 14:00:26',],
             // Add more plans here
         ];
 
