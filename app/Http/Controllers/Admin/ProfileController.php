@@ -101,7 +101,7 @@ class ProfileController extends Controller
             $user->update([
                 'profile' => $filename
             ]);
-            return redirect()->back()->with('success', "Profile Updated.");
+            return redirect()->back()->with('toast_success', "Your Profile has been Updated.");
         }else{
             return redirect()->back()->with('error', "Please use validate file type!");
         }
