@@ -17,7 +17,7 @@ class PlansApiController extends Controller
      */
     public function index()
     {
-        abort_if(Gate::denies('plan_access'), Response::HTTP_FORBIDDEN, '403 Forbidden |You cannot  Access this page because you do not have permission');
+        // abort_if(Gate::denies('plan_access'), Response::HTTP_FORBIDDEN, '403 Forbidden |You cannot  Access this page because you do not have permission');
         $plans = Plan::all();
         return new PlanCollection($plans);
     }
