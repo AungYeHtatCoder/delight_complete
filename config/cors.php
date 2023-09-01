@@ -19,16 +19,21 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    //'allowed_origins' => ['*'],
+    'allowed_origins' => ['https://delightmyanmar.pro/'],
+
 
     'allowed_origins_patterns' => [],
 
-    'allowed_headers' => ['*'],
+    //'allowed_headers' => ['*'],
+    'allowed_headers' => ['Content-Type', 'X-Requested-With', 'Authorization'],
+    
 
-    'exposed_headers' => [],
+   // 'exposed_headers' => [],
+    'exposed_headers' => ['Authorization'],
 
     'max_age' => 0,
 
-    'supports_credentials' => false,
+    'supports_credentials' => true,
 
 ];

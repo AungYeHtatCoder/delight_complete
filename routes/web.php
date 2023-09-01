@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SampleController;
-use App\Http\Controllers\Admin\EventCalendarController;
-use App\Http\Controllers\Admin\EventNotificationController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Home\HomePageController;
+use App\Http\Controllers\Admin\EventCalendarController;
+use App\Http\Controllers\Admin\EventNotificationController;
+use App\Http\Controllers\Admin\GetEventNotificationController;
 
 Auth::routes();
 
@@ -43,7 +44,7 @@ Route::name('admin.')->group(function () {
         // mark as read user registration notification routes
     Route::post('/mark-as-read', [App\Http\Controllers\Admin\HomeController::class, 'markNotification'])->name('markNotification');
         // get event notification routes
-        Route::get('/get-event-notification', [App\Http\Controllers\Admin\GetEventNotificationController::class, 'index'])->name('get-event-notification');
+        Route::get('/get-event-notification', [GetEventNotificationController::class, 'index'])->name('get-event-notification');
         // mark as read event notification routes
         Route::post('/mark-event-as-read', [App\Http\Controllers\Admin\GetEventNotificationController::class, 'markEventNotification'])->name('markEventNotification');
         // permission resource routes
@@ -90,7 +91,7 @@ Route::name('admin.')->group(function () {
 
 
         // Define a route for adding an event
-        Route::post('/add-event', [EventNotificationController::class, 'addEvent']);
+        //Route::post('/add-event', [EventNotificationController::class, 'addEvent']);
 
         // Define a route for sending event notifications
         Route::get('/send-event-notification/{userId}/{eventData}', [EventNotificationController::class, 'sendEventNotification']);

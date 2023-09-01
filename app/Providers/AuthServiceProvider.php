@@ -49,5 +49,20 @@ class AuthServiceProvider extends ServiceProvider
     return $user->is_admin;  // Notice it's snake_case, not camelCase
     });
 
+    Gate::define('user_create', function ($user) {
+    return $user->is_admin;  // Notice it's snake_case, not camelCase
+    });
+
+    Gate::define('user_edit', function ($user) {
+    return $user->is_admin;  // Notice it's snake_case, not camelCase
+    });
+
+    Gate::define('user_show', function ($user) {
+    return $user->is_admin;  // Notice it's snake_case, not camelCase
+    });
+    Gate::define('user_delete', function ($user) {
+    return $user->is_admin;  // Notice it's snake_case, not camelCase
+    });
+
     }
 }

@@ -3,7 +3,14 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Authcontroller;
+use App\Http\Controllers\Api\RolesController;
+use App\Http\Controllers\Api\UsersController;
+use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Api\SampleController;
+use App\Http\Controllers\Api\OurTeamController;
+use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\PlansApiController;
+use App\Http\Controllers\Api\PermissionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +37,13 @@ Route::group([
 ], function () {
     // Other Admin routes Add Here
     Route::apiResource('/plans', PlansApiController::class);
+    Route::apiResource('/users', UsersController::class);
+    Route::apiResource('/permissions', PermissionsController::class);
+    Route::apiResource('/roles', RolesController::class);
+    Route::apiResource('/our_clients', ClientController::class);
+    Route::apiResource('/our_teams', OurTeamController::class);
+    Route::apiResource('/samples', SampleController::class);
+    Route::post('/logout', [Authcontroller::class, 'logout']);
+    // services routes
+    Route::apiResource('/services', ServiceController::class);
 });
