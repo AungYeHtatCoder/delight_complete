@@ -29,12 +29,7 @@ Route::post('/sendMail', [HomePageController::class, 'sendMail']);
 Route::get('/login', [HomePageController::class, 'login']);
 //service sample pages
 Route::get('/service-samples/{name}', [HomePageController::class, 'sample']);
-
-
 //frontend routes
-
-
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::name('admin.')->group(function () {
     // rotues middleware admin group

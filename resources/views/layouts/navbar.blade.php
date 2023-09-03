@@ -122,18 +122,8 @@
       </a>
       <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
        <li class="dropdown-menu-header">
-        <h6 class="dropdown-header m-0"><span class="grey darken-2">Notifications</span></h6><span
-         class="notification-tag badge badge-danger float-right m-0">
-         @if(auth()->user()->is_admin)
-         @if($notifications)
-         {{ $notifications->count() }}
-         @else
-         0
-         @endif
-         @else
-         0
-         @endif
-        </span>
+        <h6 class="dropdown-header m-0"><span class="grey darken-2">Notifications</span></h6>
+
        </li>
        <li class="scrollable-container media-list w-100">
         <a href="{{ auth()->user()->is_admin ? url('/user-noti') : url('/get-event-notification') }}">

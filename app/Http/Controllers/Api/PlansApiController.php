@@ -27,7 +27,13 @@ class PlansApiController extends Controller
      */
     public function create()
     {
-        //
+        // api create plan
+        $services = Service::all();
+        return response()->json([
+            'success' => true,
+            'message' => 'Services fetched successfully',
+            'data' => $services
+        ], Response::HTTP_OK);
     }
 
     /**
